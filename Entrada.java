@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 /**
  * Classe com as rotinas de entrada e saída do projeto
- * @author Hilario Seibel Junior e <seu nome aqui>
+ * @author Hilario Seibel Junior, Luan Otoni de Oliveira e Guilherme Henrique Omena Costa
  */
 public class Entrada {
 
@@ -117,25 +117,52 @@ public class Entrada {
                 Entrada.cadArea(s, input);
                 break;
             case 2:
-                //Entrada.cadCurso(s, input);
+                Entrada.cadCurso(s, input);
                 break;
             case 3:
-                //Entrada.cadIngressante(s, input);
+                Entrada.cadIngressante(s, input);
                 break;
             case 4:
-                //Entrada.cadConcluinte(s, input);
+                Entrada.cadConcluinte(s, input);
                 break;
             case 5:
-                //Entrada.cadResposta(s, input);
+                Entrada.cadResposta(s, input);
                 break;
             case 6:
-                //Entrada.cadProva(s, input);
+                Entrada.cadProva(s, input);
                 break;
             default:
                 System.out.println("Opção Inválida.");
         }
 
     }
+
+
+
+    public static void menu_relatorios(Sistema s, Scanner input) {
+        String msg = "*********************\n" +
+                "1) Listar Resultados por Conceito\n" +
+                "2) Listar Resultados por Área\n" +
+                "3) Listar Alunos Irregulares\n" +
+                "0) Voltar\n";
+
+        int op = Entrada.lerInteiro(msg, input);
+
+        if (op == 0) return;
+
+        switch(op) {
+            case 1:
+                Entrada.listResultConceito(s,input);
+            case 2:
+                Entrada.listResultArea(s,input);
+            case 3:
+                Entrada.listAlunosIrreg(s,input);
+            default:
+                System.out.println("Opção Inválida.");
+        }
+    }
+
+
 
     public static void cadArea(Sistema s, Scanner input) {
         String nome = Entrada.lerLinha("Digite o nome da área: ", input);
@@ -145,6 +172,22 @@ public class Entrada {
         System.out.println("Área cadastrada com sucesso!");
     }
 
+    private static void cadCurso(Sistema s, Scanner input) {
+        String nome = Entrada.lerLinha("Digite o nome do curso: ", input);
+        String codigoC = Entrada.lerLinha("Digite o código do curso: ", input);
+        System.out.println("Áreas cadastradas:");
+        for(Area a : s.getAreas()){
+            System.out.println(a);
+        }
 
+        String codigoA = Entrada.lerLinha("Digite o código da área do curso: ", input);
+        Area area = s.buscarArea(codigoA);
+        s.cadastrarCurso(new Curso(nome,codigoC), area);
+        System.out.println("Curso cadastrado com sucesso!");
+    }
+
+    private static void cadIngressante(Sistema s, Scanner input) {
+
+    }
 
 }
