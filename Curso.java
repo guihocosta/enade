@@ -11,23 +11,50 @@ public class Curso {
     }
 
     public void adicionarAluno(Aluno a){
-        return;
+        this.alunos.add(a);
     }
 
     public double calcularMedia(){
-        return 0;
+        double media = 0;
+        int qtdConcluintes = 0;
+        for (Aluno a : alunos){
+            if (a instanceof Concluinte c){
+                media += c.calcularNota();
+                qtdConcluintes++;
+            }
+        }
+        if (qtdConcluintes == 0) return 0;
+        return media/qtdConcluintes;
     }
 
     public int calcularConceito(){
-        return 0;
+        double media = calcularMedia();
+        if (media >= 8) return 5;
+        if (media >= 6) return 4;
+        if (media >= 4) return 3;
+        if (media >= 2) return 2;
+        return 1;
+
     }
 
     public ArrayList<Ingressante> ingressantes(){
-        return new ArrayList<>();
+        ArrayList<Ingressante> ingressantes = new ArrayList<>();
+        for (Aluno a : alunos){
+            if (a instanceof Ingressante i){
+                ingressantes.add(i);
+            }
+        }
+        return ingressantes;
     }
 
     public ArrayList<Ingressante> ingressantes(int semestre){
-        return new ArrayList<>();
+        ArrayList<Ingressante> ingressantes = new ArrayList<>();
+        for (Aluno a : alunos){
+            if (a instanceof Ingressante i && i.getSemIngresso() == semestre){
+                ingressantes.add(i);
+            }
+        }
+        return ingressantes;
     }
 
     public String getNome() {
@@ -42,7 +69,6 @@ public class Curso {
         return alunos;
     }
 
-    @Override
     public String toString() {
         return this.nome + " - " + this.codigo;
     }

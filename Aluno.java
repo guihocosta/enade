@@ -7,40 +7,28 @@ public class Aluno {
         this.matricula = matricula;
     }
 
-    @Override
     public String toString() {
         return this.nome + " (" + this.matricula + ")";
     }
 
     public boolean regular(){
-        return true;
+        return this.questionarioRespondido;
     }
 
     public void cadastrarResposta(){
-        return;
+        this.questionarioRespondido = true;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getMatricula() {
         return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
     }
 
     public boolean isQuestionarioRespondido() {
         return questionarioRespondido;
     }
 
-    public void setQuestionarioRespondido(boolean questionarioRespondido) {
-        this.questionarioRespondido = questionarioRespondido;
-    }
 }

@@ -6,16 +6,11 @@ public class Ingressante extends Aluno {
         this.semIngresso = semIngresso;
     }
 
-    @Override
     public String toString() {
         return super.toString() + " - INGRESSANTE";
     }
 
     public int getSemIngresso() {
         return semIngresso;
-    }
-
-    public void setSemIngresso(int semIngresso) {
-        this.semIngresso = semIngresso;
     }
 }

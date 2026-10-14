@@ -4,23 +4,25 @@ public class Concluinte extends Aluno{
 
     public Concluinte(String nome, String matricula) {
         super(nome, matricula);
+        this.presente = false;
     }
 
-    @Override
     public String toString() {
         return super.toString() + " - CONCLUINTE";
     }
 
     public void cadastrarProva(double n1, double n2){
-        return;
+        this.presente = true;
+        this.notaFormacaoGeral = n1;
+        this.notaComponenteEspecifico = n2;
     }
 
     public double calcularNota(){
-        return 0;
+        return (this.notaFormacaoGeral * 3 + this.notaComponenteEspecifico * 7) / 10;
     }
 
     public boolean regular(){
-        return true;
+        return super.regular() && this.presente;
     }
 
     public double getNotaFormacaoGeral() {
@@ -41,9 +43,5 @@ public class Concluinte extends Aluno{
 
     public boolean isPresente() {
         return presente;
-    }
-
-    public void setPresente(boolean presente) {
-        this.presente = presente;
     }
 }
