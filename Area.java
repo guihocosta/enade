@@ -15,4 +15,20 @@ public class Area {
         return this.nome + " (" + this.codigo + ")";
     }
 
+    public void adicionarCurso(Curso c){
+        return;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public ArrayList<Curso> getCursos() {
+        return cursos;
+    }
+
 }
