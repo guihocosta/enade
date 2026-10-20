@@ -41,8 +41,8 @@ public class Sistema {
         ArrayList<Curso> cursosArea = new ArrayList<>();
 
         for (Area a : areas){
-            if (nomeArea.contains(a.getNome())){
-                cursosArea = a.getCursos();
+            if (a.getNome().equals(nomeArea)){
+                cursosArea = new ArrayList<>(a.getCursos());
                 break;
             }
         }
@@ -63,7 +63,7 @@ public class Sistema {
     /** Retorna null se não encontrar. */
     public Area buscarArea(String codigo){
         for (Area a : areas)
-            if (a.getCodigo().contains(codigo))
+            if (a.getCodigo().equals(codigo))
                 return a;
 
         return null;
@@ -72,7 +72,7 @@ public class Sistema {
     /** Retorna null se não encontrar. */
     public Curso buscarCurso(String codigo){
         for (Curso c : cursos)
-            if (c.getCodigo().contains(codigo))
+            if (c.getCodigo().equals(codigo))
                 return c;
 
         return null;
@@ -81,7 +81,7 @@ public class Sistema {
     /** Retorna null se não encontrar. */
     public Aluno buscarAluno(String matricula){
         for (Aluno a : alunos)
-            if (a.getMatricula().contains(matricula))
+            if (a.getMatricula().equals(matricula))
                 return a;
 
         return null;
