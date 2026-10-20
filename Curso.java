@@ -15,16 +15,16 @@ public class Curso {
     }
 
     public double calcularMedia(){
-        double media = 0;
+        double soma = 0;
         int qtdConcluintes = 0;
         for (Aluno a : alunos){
             if (a instanceof Concluinte c){
-                media += c.calcularNota();
+                soma += c.calcularNota();
                 qtdConcluintes++;
             }
         }
         if (qtdConcluintes == 0) return 0;
-        return media/qtdConcluintes;
+        return soma / qtdConcluintes;
     }
 
     public int calcularConceito(){
