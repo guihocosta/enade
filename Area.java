@@ -11,6 +11,7 @@ public class Area {
         this.cursos = new ArrayList<>();
     }
 
+    @Override
     public String toString() {
         return this.nome + " - " + this.codigo;
     }

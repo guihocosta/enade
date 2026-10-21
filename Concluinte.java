@@ -7,6 +7,7 @@ public class Concluinte extends Aluno{
         this.presente = false;
     }
 
+    @Override
     public String toString() {
         return super.toString() + " - CONCLUINTE";
     }
@@ -21,6 +22,7 @@ public class Concluinte extends Aluno{
         return (this.notaFormacaoGeral * 3 + this.notaComponenteEspecifico * 7) / 10;
     }
 
+    @Override
     public boolean regular(){
         return super.regular() && this.presente;
     }
@@ -29,16 +31,8 @@ public class Concluinte extends Aluno{
         return notaFormacaoGeral;
     }
 
-    public void setNotaFormacaoGeral(double notaFormacaoGeral) {
-        this.notaFormacaoGeral = notaFormacaoGeral;
-    }
-
     public double getNotaComponenteEspecifico() {
         return notaComponenteEspecifico;
-    }
-
-    public void setNotaComponenteEspecifico(double notaComponenteEspecifico) {
-        this.notaComponenteEspecifico = notaComponenteEspecifico;
     }
 
     public boolean isPresente() {

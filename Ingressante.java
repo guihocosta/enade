@@ -6,6 +6,7 @@ public class Ingressante extends Aluno {
         this.semIngresso = semIngresso;
     }
 
+    @Override
     public String toString() {
         return super.toString() + " - INGRESSANTE";
     }

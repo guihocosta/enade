@@ -7,6 +7,7 @@ public class Aluno {
         this.matricula = matricula;
     }
 
+    @Override
     public String toString() {
         return this.nome + " (" + this.matricula + ")";
     }

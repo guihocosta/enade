@@ -69,6 +69,7 @@ public class Curso {
         return alunos;
     }
 
+    @Override
     public String toString() {
         return this.nome + " - " + this.codigo;
     }
