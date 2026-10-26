@@ -296,7 +296,7 @@ public class Entrada {
     private static void listAlunosIrreg(Sistema s, Scanner input) {
         System.out.println("Alunos irregulares com o ENADE:");
         for(Aluno a : s.listarAlunosIrregulares()){
-            System.out.println(a + " - CURSO: " + Entrada.formatar(s.getCursoDoAluno(a)));
+            System.out.println(a + " - Curso: " + Entrada.formatar(s.getCursoDoAluno(a)));
         }
     }
 
