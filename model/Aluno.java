@@ -1,10 +1,20 @@
-public class Aluno {
+package model;
+
+import exception.DadoInvalidoException;
+
+public class Aluno implements Comparable<Aluno> {
     private String nome, matricula;
     private boolean questionarioRespondido;
 
-    public Aluno(String nome, String matricula){
+    public Aluno(String nome, String matricula) throws DadoInvalidoException {
         this.nome = nome;
         this.matricula = matricula;
+    }
+
+    // TODO (Guilherme): nome e, no empate, matrícula
+    @Override
+    public int compareTo(Aluno outro) {
+        return 0;
     }
 
     @Override

@@ -1,10 +1,15 @@
-import java.util.ArrayList;
+package model;
 
-public class Curso {
+import exception.DadoInvalidoException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Curso implements Comparable<Curso> {
     private String nome, codigo;
     private ArrayList<Aluno> alunos;
 
-    public Curso(String nome, String codigo) {
+    public Curso(String nome, String codigo) throws DadoInvalidoException {
         this.nome = nome;
         this.codigo = codigo;
         this.alunos = new ArrayList<>();
@@ -37,7 +42,7 @@ public class Curso {
 
     }
 
-    public ArrayList<Ingressante> ingressantes(){
+    public List<Ingressante> ingressantes(){
         ArrayList<Ingressante> ingressantes = new ArrayList<>();
         for (Aluno a : alunos){
             if (a instanceof Ingressante i){
@@ -47,7 +52,7 @@ public class Curso {
         return ingressantes;
     }
 
-    public ArrayList<Ingressante> ingressantes(int semestre){
+    public List<Ingressante> ingressantes(int semestre){
         ArrayList<Ingressante> ingressantes = new ArrayList<>();
         for (Aluno a : alunos){
             if (a instanceof Ingressante i && i.getSemIngresso() == semestre){
@@ -65,8 +70,14 @@ public class Curso {
         return codigo;
     }
 
-    public ArrayList<Aluno> getAlunos() {
+    public List<Aluno> getAlunos() {
         return alunos;
+    }
+
+    // TODO (Guilherme): nome e, no empate, código
+    @Override
+    public int compareTo(Curso outro) {
+        return 0;
     }
 
     @Override

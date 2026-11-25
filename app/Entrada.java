@@ -1,6 +1,11 @@
+package app;
+
+import exception.EnadeException;
+import model.*;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -114,27 +119,31 @@ public class Entrada {
 
         if (op == 0) return;
 
-        switch(op) {
-            case 1:
-                Entrada.cadArea(s, input);
-                break;
-            case 2:
-                Entrada.cadCurso(s, input);
-                break;
-            case 3:
-                Entrada.cadIngressante(s, input);
-                break;
-            case 4:
-                Entrada.cadConcluinte(s, input);
-                break;
-            case 5:
-                Entrada.cadResposta(s, input);
-                break;
-            case 6:
-                Entrada.cadProva(s, input);
-                break;
-            default:
-                System.out.println("Opção Inválida.");
+        try {
+            switch(op) {
+                case 1:
+                    Entrada.cadArea(s, input);
+                    break;
+                case 2:
+                    Entrada.cadCurso(s, input);
+                    break;
+                case 3:
+                    Entrada.cadIngressante(s, input);
+                    break;
+                case 4:
+                    Entrada.cadConcluinte(s, input);
+                    break;
+                case 5:
+                    Entrada.cadResposta(s, input);
+                    break;
+                case 6:
+                    Entrada.cadProva(s, input);
+                    break;
+                default:
+                    System.out.println("Opção Inválida.");
+            }
+        } catch (EnadeException e) {
+            System.out.println(e.getMessage());
         }
 
     }
@@ -169,7 +178,7 @@ public class Entrada {
 
 
 
-    public static void cadArea(Sistema s, Scanner input) {
+    public static void cadArea(Sistema s, Scanner input) throws EnadeException {
         String nome = Entrada.lerLinha("Digite o nome da área: ", input);
         String codigo = Entrada.lerLinha("Digite o código da área: ", input);
 
@@ -177,7 +186,7 @@ public class Entrada {
         System.out.println("Área cadastrada com sucesso!");
     }
 
-    private static void cadCurso(Sistema s, Scanner input) {
+    private static void cadCurso(Sistema s, Scanner input) throws EnadeException {
         String nome = Entrada.lerLinha("Digite o nome do curso: ", input);
         String codigoC = Entrada.lerLinha("Digite o código do curso: ", input);
         Entrada.imprimirAreas(s);
@@ -193,7 +202,7 @@ public class Entrada {
         System.out.println("Curso cadastrado com sucesso!");
     }
 
-    private static void cadIngressante(Sistema s, Scanner input) {
+    private static void cadIngressante(Sistema s, Scanner input) throws EnadeException {
         String nome = Entrada.lerLinha("Digite o nome do ingressante: ", input);
         String matricula = Entrada.lerLinha("Digite a matrícula do ingressante: ", input);
         int semestre = Entrada.lerInteiro("Digite o semestre de ingresso: ", input);
@@ -208,7 +217,7 @@ public class Entrada {
         System.out.println("Aluno ingressante cadastrado com sucesso!");
     }
 
-    private static void cadConcluinte(Sistema s, Scanner input) {
+    private static void cadConcluinte(Sistema s, Scanner input) throws EnadeException {
         String nome = Entrada.lerLinha("Digite o nome do concluinte: ", input);
         String matricula = Entrada.lerLinha("Digite a matrícula do concluinte: ", input);
 
@@ -222,7 +231,7 @@ public class Entrada {
         System.out.println("Aluno concluinte cadastrado com sucesso!");
     }
 
-    private static void cadResposta(Sistema s, Scanner input) {
+    private static void cadResposta(Sistema s, Scanner input) throws EnadeException {
         System.out.println("Alunos cadastrados:");
         for(Aluno a : s.alunosSemQuestionario()){
             System.out.println(a);
@@ -239,7 +248,7 @@ public class Entrada {
         System.out.println("Resposta cadastrada com sucesso!");
     }
 
-    private static void cadProva(Sistema s, Scanner input) {
+    private static void cadProva(Sistema s, Scanner input) throws EnadeException {
         System.out.println("Concluintes cadastrados:");
         for(Concluinte c : s.concluintesSemProva()){
             System.out.println(c);
@@ -261,7 +270,7 @@ public class Entrada {
 
     private static void listResultConceito(Sistema s, Scanner input) {
         int conceito = Entrada.lerInteiro("Digite o conceito desejado (1 a 5): ", input);
-        ArrayList<Curso> cursos = s.listarResultados(conceito);
+        List<Curso> cursos = s.listarResultados(conceito);
 
         System.out.println("Cursos com conceito " + conceito + ":");
         if (cursos.isEmpty()) {
@@ -279,7 +288,7 @@ public class Entrada {
         Entrada.imprimirAreas(s);
 
         String nomeArea = Entrada.lerLinha("Digite o nome da área: ", input);
-        ArrayList<Curso> cursos = s.listarResultados(nomeArea);
+        List<Curso> cursos = s.listarResultados(nomeArea);
 
         if (cursos.isEmpty()) {
             System.out.println("Nenhum curso na área " + nomeArea + " foi encontrado.");
@@ -300,7 +309,7 @@ public class Entrada {
         }
     }
 
-    private static Curso escolherCurso(Sistema s, Scanner input) {
+    private static Curso escolherCurso(Sistema s, Scanner input) throws EnadeException {
         System.out.println("Cursos cadastrados:");
         for(Curso c : s.getCursos()){
             System.out.println(Entrada.formatar(c));

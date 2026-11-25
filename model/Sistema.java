@@ -1,4 +1,10 @@
+package model;
+
+import exception.JaCadastradoException;
+import exception.NaoEncontradoException;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sistema {
     private ArrayList<Area> areas;
@@ -11,22 +17,22 @@ public class Sistema {
         this.alunos = new ArrayList<>();
     }
 
-    public void cadastrarArea(Area area) {
+    public void cadastrarArea(Area area) throws JaCadastradoException {
         this.areas.add(area);
     }
 
-    public void cadastrarCurso(Curso c, Area a){
+    public void cadastrarCurso(Curso c, Area a) throws JaCadastradoException {
         this.cursos.add(c);
         a.adicionarCurso(c);
     }
 
-    public void cadastrarAluno(Aluno a, Curso c){
+    public void cadastrarAluno(Aluno a, Curso c) throws JaCadastradoException {
         alunos.add(a);
         c.adicionarAluno(a);
     }
 
     /** Cursos com o conceito informado (lista vazia se nenhum). */
-    public ArrayList<Curso> listarResultados(int conceito){
+    public List<Curso> listarResultados(int conceito){
         ArrayList<Curso> cursosConceito = new ArrayList<>();
         for (Curso c : cursos){
             if (c.calcularConceito() == conceito){
@@ -37,7 +43,7 @@ public class Sistema {
     }
 
     /** Cursos da área de nome informado (lista vazia se área não existe ou sem cursos). */
-    public ArrayList<Curso> listarResultados(String nomeArea){
+    public List<Curso> listarResultados(String nomeArea){
         ArrayList<Curso> cursosArea = new ArrayList<>();
 
         for (Area a : areas){
@@ -50,7 +56,7 @@ public class Sistema {
         return cursosArea;
     }
 
-    public ArrayList<Aluno> listarAlunosIrregulares(){
+    public List<Aluno> listarAlunosIrregulares(){
         ArrayList<Aluno> alunosIrregulares = new ArrayList<>();
         for (Aluno a : alunos){
             if (!a.regular()){
@@ -61,7 +67,7 @@ public class Sistema {
     }
 
     /** Retorna null se não encontrar. */
-    public Area buscarArea(String codigo){
+    public Area buscarArea(String codigo) throws NaoEncontradoException {
         for (Area a : areas)
             if (a.getCodigo().equals(codigo))
                 return a;
@@ -70,7 +76,7 @@ public class Sistema {
     }
 
     /** Retorna null se não encontrar. */
-    public Curso buscarCurso(String codigo){
+    public Curso buscarCurso(String codigo) throws NaoEncontradoException {
         for (Curso c : cursos)
             if (c.getCodigo().equals(codigo))
                 return c;
@@ -79,7 +85,7 @@ public class Sistema {
     }
 
     /** Retorna null se não encontrar. */
-    public Aluno buscarAluno(String matricula){
+    public Aluno buscarAluno(String matricula) throws NaoEncontradoException {
         for (Aluno a : alunos)
             if (a.getMatricula().equals(matricula))
                 return a;
@@ -87,7 +93,7 @@ public class Sistema {
         return null;
     }
 
-    public ArrayList<Aluno> alunosSemQuestionario(){
+    public List<Aluno> alunosSemQuestionario(){
         ArrayList<Aluno> alunosSem = new ArrayList<>();
         for (Aluno a : alunos)
             if (!a.isQuestionarioRespondido())
@@ -96,7 +102,7 @@ public class Sistema {
         return alunosSem;
     }
 
-    public ArrayList<Concluinte> concluintesSemProva(){
+    public List<Concluinte> concluintesSemProva(){
         ArrayList<Concluinte> concluintesSem = new ArrayList<>();
         for (Aluno a : alunos)
             if (a instanceof Concluinte c){
@@ -124,15 +130,15 @@ public class Sistema {
         return null;
     }
 
-    public ArrayList<Area> getAreas() {
+    public List<Area> getAreas() {
         return areas;
     }
 
-    public ArrayList<Curso> getCursos() {
+    public List<Curso> getCursos() {
         return cursos;
     }
 
-    public ArrayList<Aluno> getAlunos() {
+    public List<Aluno> getAlunos() {
         return alunos;
     }
 }

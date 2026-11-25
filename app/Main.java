@@ -1,3 +1,7 @@
+package app;
+
+import model.Sistema;
+
 import java.util.Scanner;
 
 public class Main {

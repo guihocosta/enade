@@ -1,8 +1,12 @@
+package model;
+
+import exception.DadoInvalidoException;
+
 public class Concluinte extends Aluno{
     private double notaFormacaoGeral, notaComponenteEspecifico;
     private boolean presente;
 
-    public Concluinte(String nome, String matricula) {
+    public Concluinte(String nome, String matricula) throws DadoInvalidoException {
         super(nome, matricula);
         this.presente = false;
     }
@@ -12,7 +16,7 @@ public class Concluinte extends Aluno{
         return super.toString() + " - CONCLUINTE";
     }
 
-    public void cadastrarProva(double n1, double n2){
+    public void cadastrarProva(double n1, double n2) throws DadoInvalidoException {
         this.presente = true;
         this.notaFormacaoGeral = n1;
         this.notaComponenteEspecifico = n2;

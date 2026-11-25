@@ -1,11 +1,16 @@
+package model;
+
+import exception.DadoInvalidoException;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Area {
     private String nome;
     private String codigo;
     private ArrayList<Curso> cursos;
 
-    public Area(String nome, String codigo) {
+    public Area(String nome, String codigo) throws DadoInvalidoException {
         this.nome = nome;
         this.codigo = codigo;
         this.cursos = new ArrayList<>();
@@ -28,7 +33,7 @@ public class Area {
         return codigo;
     }
 
-    public ArrayList<Curso> getCursos() {
+    public List<Curso> getCursos() {
         return cursos;
     }
 
