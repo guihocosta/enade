@@ -1,5 +1,7 @@
 package app;
 
+import dao.SistemaDAO;
+import exception.FimDaEntradaException;
 import model.Sistema;
 
 import java.util.Scanner;
@@ -7,20 +9,29 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner input = Entrada.abrirEntrada();
-        Sistema s = new Sistema();
+        SistemaDAO dao = new SistemaDAO();
 
-        int op = Entrada.menu(input);
+        Sistema s = Entrada.carregar(dao);
+        boolean carregou = s != null;
+        if (!carregou) s = new Sistema();
 
-        while (op != 0) {
-            switch(op) {
-                case 1:
-                    Entrada.menu_cadastro(s, input);
-                    break;
-                case 2:
-                    Entrada.menu_relatorios(s, input);
-                    break;
+        try {
+            int op = Entrada.menu(input);
+
+            while (op != 0) {
+                switch(op) {
+                    case 1:
+                        boolean alterou = Entrada.menu_cadastro(s, input);
+                        if (alterou && carregou) Entrada.salvar(dao, s);
+                        break;
+                    case 2:
+                        Entrada.menu_relatorios(s, input);
+                        break;
+                }
+                op = Entrada.menu(input);
             }
-            op = Entrada.menu(input);
+        } catch (FimDaEntradaException e) {
+            Entrada.avisarFimDaEntrada();
         }
 
         Entrada.fecharEntrada(input);
